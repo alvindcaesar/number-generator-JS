@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded' , () => {
     let number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let code = document.querySelector('.code');
     let history_board = document.querySelector('.code-record');
+    let clear_button = document.getElementById('clear-button')
     
     button.addEventListener('click', generateCode);
     function generateCode() {
@@ -23,7 +24,7 @@ document.addEventListener('DOMContentLoaded' , () => {
         let element = document.createElement('div')
         element.classList.add('code-record')
         element.innerHTML = `<p class="record">${sixNumbers}</p>
-                 <button class="remove-button type="button" name="button">delete plis</button>`
+                 <button class="remove-button type="button" name="button">Delete code</button>`
         
         history_board.appendChild(element)
         let remove_button = element.querySelector('.remove-button');
@@ -33,6 +34,14 @@ document.addEventListener('DOMContentLoaded' , () => {
     function removeRecord(e){
         let record = e.currentTarget.parentElement
         history_board.removeChild(record)
+    }
+
+    clear_button.addEventListener('click', removeAllCode);
+    function removeAllCode(){
+        let records = document.querySelectorAll('.code-history');
+        records.forEach( function (record) {
+            history_board.removeChild(record);
+        });
     }
 
 })
