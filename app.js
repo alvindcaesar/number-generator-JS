@@ -3,10 +3,12 @@ document.addEventListener('DOMContentLoaded' , () => {
     let button = document.getElementById('button');
     let number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let code = document.querySelector('.code');
-    let history_board = document.querySelector('.code-record');
+    let history_board = document.querySelector('.code-history');
     let clear_button = document.getElementById('clear-button')
     
+    clear_button.addEventListener('click', removeAllRecords);
     button.addEventListener('click', generateCode);
+
     function generateCode() {
         let sixNumbers = '';
         for (let i = 0; i < 6; i++) {
@@ -15,7 +17,7 @@ document.addEventListener('DOMContentLoaded' , () => {
         }
 
         getRecord(sixNumbers)
-        // console.log(sixNumbers)
+        
     }
     function getRandomCode(){
         return Math.floor(Math.random() * number.length)
@@ -36,11 +38,14 @@ document.addEventListener('DOMContentLoaded' , () => {
         history_board.removeChild(record)
     }
 
-    clear_button.addEventListener('click', removeAllCode);
-    function removeAllCode(){
-        let records = document.querySelectorAll('.code-history');
-        let parent = records.parentElement;
-        parent.removeChild(records)
+   
+    function removeAllRecords() {
+        let records = document.querySelectorAll('.code-record');
+        records.forEach( function (record) {
+            history_board.removeChild(record)
+        
+
+        });
     }
 
 })
