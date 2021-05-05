@@ -23,8 +23,7 @@ document.addEventListener('DOMContentLoaded' , () => {
         let element = document.createElement('div')
         element.classList.add('code-record')
         element.innerHTML = `<p class="record">${sixNumbers}</p>
-                 <button class="remove-button type="button" name="button">delete plis</button>
-                </div>`
+                 <button class="remove-button type="button" name="button">delete plis</button>`
         
         history_board.appendChild(element)
         let remove_button = element.querySelector('.remove-button');
