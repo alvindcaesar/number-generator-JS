@@ -39,9 +39,8 @@ document.addEventListener('DOMContentLoaded' , () => {
     clear_button.addEventListener('click', removeAllCode);
     function removeAllCode(){
         let records = document.querySelectorAll('.code-history');
-        records.forEach( function (record) {
-            history_board.removeChild(record);
-        });
+        let parent = records.parentElement;
+        parent.removeChild(records)
     }
 
 })
