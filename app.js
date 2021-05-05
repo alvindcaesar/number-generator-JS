@@ -4,10 +4,16 @@ document.addEventListener('DOMContentLoaded' , () => {
     let number = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     let code = document.querySelector('.code');
     let history_board = document.querySelector('.code-history');
-    let clear_button = document.getElementById('clear-button')
+    let clear_button = document.getElementById('clear-button');
+    let restore_records = [];
+    let restore_deleted_records = document.getElementById('restore-button');
     
     clear_button.addEventListener('click', removeAllRecords);
+    
     button.addEventListener('click', generateCode);
+
+    restore_deleted_records.addEventListener('click', restoreRecords);
+
 
     function generateCode() {
         let sixNumbers = '';
@@ -36,6 +42,7 @@ document.addEventListener('DOMContentLoaded' , () => {
     function removeRecord(e){
         let record = e.currentTarget.parentElement
         history_board.removeChild(record)
+        storeDeletedRecord(record)
     }
 
    
@@ -44,6 +51,19 @@ document.addEventListener('DOMContentLoaded' , () => {
         records.forEach( function (record) {
             history_board.removeChild(record)
         
+        storeDeletedRecord(record)
+        
+        });
+
+    }
+
+    function storeDeletedRecord(record){
+        restore_records.push(record)
+    }
+
+    function restoreRecords() {
+        restore_records.forEach( function(record) {
+            history_board.appendChild(record)
 
         });
     }
