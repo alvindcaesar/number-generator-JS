@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded' , () => {
     function getRecord(sixNumbers){
         let element = document.createElement('div')
         element.classList.add('code-record')
-        element.innerHTML = `<p class="record">${sixNumbers}</p>
+        element.innerHTML = `<p id = "recordid" class="record">${sixNumbers}</p>
                  <button class="remove-button type="button" name="button">Delete code</button>`
         
         history_board.appendChild(element)
@@ -42,6 +42,7 @@ document.addEventListener('DOMContentLoaded' , () => {
     function removeRecord(e){
         let record = e.currentTarget.parentElement
         history_board.removeChild(record)
+        startShowing()
         startTimer()
         storeDeletedRecord(record)
     }
@@ -55,8 +56,10 @@ document.addEventListener('DOMContentLoaded' , () => {
         
         });
         restore_deleted_records.style.display = 'inline';
-        startTimer();
+        
         timer = 10;
+        startShowing()
+        startTimer();
     }
 
     function storeDeletedRecord(record){
@@ -78,6 +81,10 @@ document.addEventListener('DOMContentLoaded' , () => {
         restore_deleted_records.style.display = "inline";
         timer_display.style.display = "inline";
 
+        if (restore_records.length == 0) {
+            timer = 10;
+        }
+
         let runTimer = setInterval(function () {
             if (timer > 0){
                 timer -= 1
@@ -90,5 +97,22 @@ document.addEventListener('DOMContentLoaded' , () => {
                 restore_records = [];
             }
         }, 1000);
+    }
+
+    // function startShowing(){
+    //     let delayTimer = document.querySelector(".timer");
+    //     delayTimer.style.opacity = 0;
+    //     let intervalId = setInterval(function(){
+    //       if(delayTimer.style.opacity >= 1)
+    //       {
+    //         clearInterval(intervalId);
+    //       }else{
+    //         delayTimer.style.opacity = parseFloat(delayTimer.style.opacity) + 0.1;
+    //       }
+    //     },250);
+    // }
+    function startShowing(){
+        setTimeout(function(){ 
+        }, 3000);
     }
 })
